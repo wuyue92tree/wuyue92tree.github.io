@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>cdh6.3.2集成tez0.9.2计算引擎 | 资源客栈</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    
+    <meta name="description" content="GO AND BEYOND">
+    <link rel="preload" href="/assets/css/0.styles.696438c8.css" as="style"><link rel="preload" href="/assets/js/app.a870adf0.js" as="script"><link rel="preload" href="/assets/js/2.8cb5b17e.js" as="script"><link rel="preload" href="/assets/js/61.7847aec8.js" as="script"><link rel="prefetch" href="/assets/js/10.3aeabe06.js"><link rel="prefetch" href="/assets/js/11.4cbcbd9d.js"><link rel="prefetch" href="/assets/js/12.4261461c.js"><link rel="prefetch" href="/assets/js/13.4eceefe6.js"><link rel="prefetch" href="/assets/js/14.0c7635ad.js"><link rel="prefetch" href="/assets/js/15.61de4f19.js"><link rel="prefetch" href="/assets/js/16.de801ecc.js"><link rel="prefetch" href="/assets/js/17.4f89c778.js"><link rel="prefetch" href="/assets/js/18.3c5778a7.js"><link rel="prefetch" href="/assets/js/19.eb3b8a6a.js"><link rel="prefetch" href="/assets/js/20.bdaaa403.js"><link rel="prefetch" href="/assets/js/21.009d60ad.js"><link rel="prefetch" href="/assets/js/22.146c7dc9.js"><link rel="prefetch" href="/assets/js/23.75a33d31.js"><link rel="prefetch" href="/assets/js/24.cd874762.js"><link rel="prefetch" href="/assets/js/25.71a9a698.js"><link rel="prefetch" href="/assets/js/26.43108dbd.js"><link rel="prefetch" href="/assets/js/27.b77ebbf4.js"><link rel="prefetch" href="/assets/js/28.5aec0f17.js"><link rel="prefetch" href="/assets/js/29.49461ca3.js"><link rel="prefetch" href="/assets/js/3.35b15324.js"><link rel="prefetch" href="/assets/js/30.528d2155.js"><link rel="prefetch" href="/assets/js/31.28fc852a.js"><link rel="prefetch" href="/assets/js/32.57e86b5c.js"><link rel="prefetch" href="/assets/js/33.103120b9.js"><link rel="prefetch" href="/assets/js/34.71ae33bc.js"><link rel="prefetch" href="/assets/js/35.2ead5d1b.js"><link rel="prefetch" href="/assets/js/36.fd21b995.js"><link rel="prefetch" href="/assets/js/37.ea06fbaa.js"><link rel="prefetch" href="/assets/js/38.9439ff58.js"><link rel="prefetch" href="/assets/js/39.aabecc99.js"><link rel="prefetch" href="/assets/js/4.5e700901.js"><link rel="prefetch" href="/assets/js/40.61b037a3.js"><link rel="prefetch" href="/assets/js/41.11a0c8d5.js"><link rel="prefetch" href="/assets/js/42.fe83be43.js"><link rel="prefetch" href="/assets/js/43.4afd9142.js"><link rel="prefetch" href="/assets/js/44.d2fc5c17.js"><link rel="prefetch" href="/assets/js/45.b90f7893.js"><link rel="prefetch" href="/assets/js/46.8a684ee9.js"><link rel="prefetch" href="/assets/js/47.d09afd14.js"><link rel="prefetch" href="/assets/js/48.ccc5997f.js"><link rel="prefetch" href="/assets/js/49.0bdbb547.js"><link rel="prefetch" href="/assets/js/5.3ae2ba50.js"><link rel="prefetch" href="/assets/js/50.56b63d2d.js"><link rel="prefetch" href="/assets/js/51.d78a0a6c.js"><link rel="prefetch" href="/assets/js/52.404c4a2c.js"><link rel="prefetch" href="/assets/js/53.dc578042.js"><link rel="prefetch" href="/assets/js/54.ea6d195d.js"><link rel="prefetch" href="/assets/js/55.f13b0a22.js"><link rel="prefetch" href="/assets/js/56.ba1700bf.js"><link rel="prefetch" href="/assets/js/57.2e0fdf3f.js"><link rel="prefetch" href="/assets/js/58.f7839aa0.js"><link rel="prefetch" href="/assets/js/59.eb067ede.js"><link rel="prefetch" href="/assets/js/6.c5f8be63.js"><link rel="prefetch" href="/assets/js/60.fc1fab66.js"><link rel="prefetch" href="/assets/js/62.b3941b2d.js"><link rel="prefetch" href="/assets/js/63.c6e66541.js"><link rel="prefetch" href="/assets/js/64.fd4f7091.js"><link rel="prefetch" href="/assets/js/65.1ea76be0.js"><link rel="prefetch" href="/assets/js/66.c99cb93b.js"><link rel="prefetch" href="/assets/js/67.ceacc996.js"><link rel="prefetch" href="/assets/js/68.b620b8f1.js"><link rel="prefetch" href="/assets/js/69.27feffbf.js"><link rel="prefetch" href="/assets/js/7.487605d3.js"><link rel="prefetch" href="/assets/js/70.883a98b8.js"><link rel="prefetch" href="/assets/js/71.3dde4be7.js"><link rel="prefetch" href="/assets/js/72.8aa742cd.js"><link rel="prefetch" href="/assets/js/73.1289946c.js"><link rel="prefetch" href="/assets/js/74.5568a47d.js"><link rel="prefetch" href="/assets/js/75.3bfbe16e.js"><link rel="prefetch" href="/assets/js/76.ae60dc52.js"><link rel="prefetch" href="/assets/js/77.01c5c399.js"><link rel="prefetch" href="/assets/js/8.d678c2b6.js"><link rel="prefetch" href="/assets/js/9.dde1e46a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.696438c8.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">资源客栈</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/technology/" class="nav-link">技术专栏</a></div><div class="nav-item"><a href="/collector/" class="nav-link">收藏家</a></div><div class="nav-item"><a href="/opensource/" class="nav-link">开源项目</a></div><div class="nav-item"><a href="/categories/" class="nav-link">分类</a></div><div class="nav-item"><a href="/tags/" class="nav-link">标签</a></div><div class="nav-item"><a href="/archives/" class="nav-link">归档</a></div> <a href="https://github.com/wuyue92tree" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar" style="display:none;"><div class="blogger"><img src="./img/avatar.png"> <div class="blogger-info"><h3>Yue.Wu</h3> <span>GO AND BEYOND</span></div></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/technology/" class="nav-link">技术专栏</a></div><div class="nav-item"><a href="/collector/" class="nav-link">收藏家</a></div><div class="nav-item"><a href="/opensource/" class="nav-link">开源项目</a></div><div class="nav-item"><a href="/categories/" class="nav-link">分类</a></div><div class="nav-item"><a href="/tags/" class="nav-link">标签</a></div><div class="nav-item"><a href="/archives/" class="nav-link">归档</a></div> <a href="https://github.com/wuyue92tree" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>cdh6.3.2集成tez0.9.2计算引擎</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/05b3d2/#软件包" class="sidebar-link">软件包</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/pages/05b3d2/#编译环境准备" class="sidebar-link">编译环境准备</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/05b3d2/#安装maven" class="sidebar-link">安装maven</a></li><li class="sidebar-sub-header"><a href="/pages/05b3d2/#安装protobuf-2-5-0" class="sidebar-link">安装protobuf-2.5.0</a></li><li class="sidebar-sub-header"><a href="/pages/05b3d2/#安装tez" class="sidebar-link">安装tez</a></li></ul></li><li><a href="/pages/05b3d2/#验证" class="sidebar-link">验证</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/pages/05b3d2/#faq" class="sidebar-link">FAQ</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-33863c7e><div class="articleInfo" data-v-33863c7e><!----> <div class="info" data-v-33863c7e><div title="作者" class="author iconfont icon-touxiang" data-v-33863c7e><a href="https://github.com/wuyue92tree" target="_blank" title="作者" class="beLink" data-v-33863c7e>Yue.Wu</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-33863c7e><a href="javascript:;" data-v-33863c7e>2020-03-15</a></div> <div title="分类" class="date iconfont icon-wenjian" data-v-33863c7e><a href="/categories/?category=%E5%A4%A7%E6%95%B0%E6%8D%AE" data-v-33863c7e>大数据 </a></div></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABGpJREFUSA3tVVtoXFUU3fvOI53UlmCaKIFmwEhsE7QK0ipFEdHEKpXaZGrp15SINsXUWvBDpBgQRKi0+KKoFeJHfZA+ED9KKoIU2gYD9UejTW4rVIzm0VSTziPzuNu1z507dibTTjL4U/DAzLn3nL3X2o91ziX6f9wMFdh6Jvbm9nNSV0msViVO6tN1Rm7NMu2OpeJ9lWBUTDxrJbYTS0hInuwciu9eLHlFxCLCZEk3MegsJmZ5K/JD6t7FkFdEvGUo1g7qJoG3MHImqRIn8/nzY1K9UPKKiJmtnUqHVE3Gbuay6vJE/N2FEmuxFjW2nUuE0yQXRRxLiTUAzs36zhZvOXJPdX850EVnnLZkB8prodQoM5JGj7Xk2mvC7JB8tG04Ef5PiXtG0UtxupRQSfTnBoCy554x18yJHI6I+G5Eru4LHmPJZEQsrvPUbMiA8G/WgMK7w7I+ez7++o2ANfbrjvaOl1tFMs+htG3IrZH9/hDX1Pr8Tc0UvH8tcX29KzAgIGcEkINyW5BF9x891hw6VYqgJHEk0huccS7vh3C6gTiODL+26huuBtbct8eZnqLML8PkxGYpuPZBqtqwkSjgc4mB5gbgig5i+y0UDK35LMxXisn9xQtK+nd26gTIHsHe/oblK/b29fUmN/8Y+9jAQrnBp56m1LcDlDp9irKTExSKduXJVWSqdBMA08pEJnEIOB3FPPMybu/oeV8zFeYN3xx576Q6RH+VmplE4ncQV5v+5rzSoyOU7PuEAg8g803PwBJ0CExno/jcMbN8tONYeOmHiuUNryvm3fRUy4tMPVLdAGkUhNWuggGrJcXPv+ouCjz0MKUHz1J2/E8IC9nqTabcxgaBYM0hPhD5Y65FsbxRQKxCQrDjDctW7PUM3HuZunFyifSAqEfuzCp48Il24luWUWZoyJCaPR82jE0+kFA643wRFVni4RYSq3ohJO2pZ7B5dO4xkDWbEpossJPLSrPjYID8rS2UHTlvyNxqIGsg674XJJ7vnh5L7PNwC4hh2sjCI96mzszOTpxLF0T7l88Yz7lAuK6OnL8gXLOnTvpzSb22YG8W7us3jSebFHeeqnXRG1vt+MoUM84LQIBmMsCTAcOauTh0T0l0neQK7m2bLMt2mGxU3HYssS0J2cdv5wljlPsrIuZLAG/2DOZIXgCYT8uMGZN+e2kSirfxZOPCsC0f24nTZzspnVn9VePS1Z5vubmAGGXG8ZFno9Hel0yfA5ZPhF7Dh972BQJ2qCpgH67lmWtBYbvk6sz02wjky2vXyz0XErP/kFB619js1BtwfOV4OPRqOQBjy3Qbk18vigUPPSD5ceHnwck7W9bhAqZdd7SuG7w4/P2F/GaJh8c7e9qgow+Q7cGBo+98WsLkuktFqiZabtXuQTu/Y5ETbR0v7tNSFnvrmu6pjdoan2KjMu8q/Hmj1EfCO2ZGfEIbIXKUlw8qaX9/b2oeSJmFksSeT/Fn0V3nSypChh4Gjh74ybO9aeZ/AN2dwciu2/MhAAAAAElFTkSuQmCC">
+          cdh6.3.2集成tez0.9.2计算引擎
+        </h1> <!----> <div class="theme-vdoing-content content__default"><h1 id="cdh集成tez计算引擎"><a href="#cdh集成tez计算引擎" class="header-anchor">#</a> CDH集成tez计算引擎</h1> <blockquote><p>经测试tez在CDH集群环境中表现一般，经常出现找不到jar包的情况，故将之前的tez业务切换到<code>spark on yarn</code>，该教程仅供参考</p></blockquote> <p>update at: 2020-05-09</p> <blockquote><p>CHD部署相关信息：http://note.youdao.com/noteshare?id=6bfb7bb2805ddedbc3e06816532d480b</p></blockquote> <h2 id="软件包"><a href="#软件包" class="header-anchor">#</a> 软件包</h2> <ul><li>maven</li> <li>tez</li> <li>Protobuf-2.5.0</li></ul> <h2 id="编译环境准备"><a href="#编译环境准备" class="header-anchor">#</a> 编译环境准备</h2> <h3 id="安装maven"><a href="#安装maven" class="header-anchor">#</a> 安装maven</h3> <blockquote><p>下载地址: http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz</p></blockquote> <div class="language- line-numbers-mode"><pre class="language-text"><code>tar -xvf apache-maven-3.6.3-bin.tar.gz
+sudo mv apache-maven-3.6.3 /usr/local/maven
+
+# 加入环境变量
+export MVN_HOME=/usr/local/maven
+export PATH=$MVN_HOME/bin:$PATH
+
+# 验证
+mvn -v
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h3 id="安装protobuf-2-5-0"><a href="#安装protobuf-2-5-0" class="header-anchor">#</a> 安装protobuf-2.5.0</h3> <blockquote><p>下载地址：https://github.com/protocolbuffers/protobuf/releases/download/v2.5.0/protobuf-2.5.0.tar.gz</p></blockquote> <div class="language- line-numbers-mode"><pre class="language-text"><code>tar -xvf protobuf-2.5.0.tar.gz
+cd protobuf-2.5.0
+
+# 编译依赖
+sudo yum install -y gcc make gcc-c++
+./configure
+make
+sudo make install
+
+# 验证
+protoc --version
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h3 id="安装tez"><a href="#安装tez" class="header-anchor">#</a> 安装tez</h3> <blockquote><p>下载地址：http://apache.claz.org/tez/0.9.2/apache-tez-0.9.2-src.tar.gz</p></blockquote> <div class="language- line-numbers-mode"><pre class="language-text"><code>tar -xvf apache-tez-0.9.2-src.tar.gz 
+cd apache-tez-0.9.2-src
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h4 id="修改pom-xml"><a href="#修改pom-xml" class="header-anchor">#</a> 修改pom.xml</h4> <ol><li><p>在<code>properties</code>中修改hadoop版本为cdh版本
+<img src="https://gitee.com/wuyue92tree/oss/raw/master/blog/BQu9J6.png" alt=""></p></li> <li><p>在<code>repositories</code>中添加cdh的maven库</p></li></ol> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;repository&gt;
+  &lt;id&gt;cloudera&lt;/id&gt;
+  &lt;url&gt;https://repository.cloudera.com/artifactory/cloudera-repos/&lt;/url&gt;
+  &lt;name&gt;Cloudera Repositories&lt;/name&gt;
+  &lt;snapshots&gt;
+    &lt;enabled&gt;false&lt;/enabled&gt;
+  &lt;/snapshots&gt;
+ &lt;/repository&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p><img src="https://gitee.com/wuyue92tree/oss/raw/master/blog/A6cnpG.png" alt=""></p> <ol start="3"><li>在<code>pluginRepositories</code>中添加cdh库</li></ol> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;pluginRepository&gt;
+  &lt;id&gt;cloudera&lt;/id&gt;
+  &lt;name&gt;Cloudera Repositories&lt;/name&gt;
+  &lt;url&gt;https://repository.cloudera.com/artifactory/cloudera-repos/&lt;/url&gt;
+&lt;/pluginRepository&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p><img src="https://gitee.com/wuyue92tree/oss/raw/master/blog/nNSLho.png" alt=""></p> <ol start="4"><li>注释掉<code>modules</code>中下列模块
+<img src="https://gitee.com/wuyue92tree/oss/raw/master/blog/YmxNb0.png" alt=""></li></ol> <h4 id="编译"><a href="#编译" class="header-anchor">#</a> 编译</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true
+
+# 编译完成后，会在tez-dist/target中生成我们需要的文件
+╰─$ ll tez-dist/target 
+total 78M
+drwxrwxr-x 2 centos centos    6 Mar  4 14:42 archive-tmp
+drwxrwxr-x 2 centos centos   28 Mar  4 14:43 maven-archiver
+drwxrwxr-x 3 centos centos 4.0K Mar  4 14:42 tez-0.9.2
+drwxrwxr-x 3 centos centos 4.0K Mar  4 14:43 tez-0.9.2-minimal
+-rw-rw-r-- 1 centos centos  13M Mar  4 14:43 tez-0.9.2-minimal.tar.gz
+-rw-rw-r-- 1 centos centos  65M Mar  4 14:43 tez-0.9.2.tar.gz
+-rw-rw-r-- 1 centos centos 2.8K Mar  4 14:43 tez-dist-0.9.2-tests.jar
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h4 id="将tez部署到hdfs"><a href="#将tez部署到hdfs" class="header-anchor">#</a> 将tez部署到hdfs</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>cd tez-dist/target
+# 从hadoop lib jars中拷贝kryo-2.22.jar到tez文件夹下的lib文件夹下，否则会出现java.lang.ClassNotFoundException: com.esotericsoftware.kryo.Serializer异常
+sudo cp /opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/jars/kryo-2.22.jar tez/tez-0.9.2/lib/
+
+hdfs dfs -mkdir -p /apps/tez-0.9.2
+
+# 在实际测试时，发现上传tez-0.9.2.tar.gz包在执行操作时，会引发yarn异常：org.apache.hadoop.yarn.exceptions.YarnException: Download and unpack failed，提示无法下载解压下面的压缩包，所以我直接将解压后的包put到了hdfs
+# hdfs dfs -put tez-0.9.2.tar.gz /apps/tez-0.9.2
+
+hdfs dfs -put tez-0.9.2 /apps/tez-0.9.2/
+hdfs dfs -chmod -R 777 /apps/tez-0.9.2/
+hdfs dfs -ls /apps/tez-0.9.2/
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h4 id="生成配置文件包"><a href="#生成配置文件包" class="header-anchor">#</a> 生成配置文件包</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code># 操作目录为`tez-dist/target`
+
+sudo cp -r tez-0.9.2-mimimal tez
+sudo mkdir tez/conf
+sudo vi tez/conf/tez-site.xml
+# tez-site.xml内容===
+&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;tez.lib.uris&lt;/name&gt;
+        &lt;value&gt;${fs.defaultFS}/apps/tez-0.9.2/tez-0.9.2/,${fs.defaultFS}/apps/tez-0.9.2/tez-0.9.2/lib/&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+          &lt;name&gt;tez.use.cluster.hadoop-libs&lt;/name&gt;
+          &lt;value&gt;false&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+# ===================
+
+# tez/lib中包含slf4j的jar包，会打印较多日志，可以在客户端中去掉slf4j-api-1.7.10.jar、slf4j-log4j12-1.7.10.jar这两个jar包，减少日志打印。
+
+# 至此客户端配置完成，将/opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/tez分发到所有节点，即完成客户端部署。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><h4 id="配置hadoop-classpath-使tez生效"><a href="#配置hadoop-classpath-使tez生效" class="header-anchor">#</a> 配置<code>HADOOP_CLASSPATH</code>，使tez生效</h4> <p><img src="https://gitee.com/wuyue92tree/oss/raw/master/blog/0Pih5s.png" alt=""></p> <div class="language- line-numbers-mode"><pre class="language-text"><code># 配置内容
+HADOOP_CLASSPATH=/opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/tez/conf:/opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/tez/*:/opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/tez/lib/*
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>保存后，重启集群。</p> <h2 id="验证"><a href="#验证" class="header-anchor">#</a> 验证</h2> <p>如下便是成功了~</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>hive&gt; set hive.execution.engine=tez;
+hive&gt; set hive.tez.container.size=4096;
+hive&gt; select count(1) from stg.s_crm_leads_origin;
+Query ID = centos_20200305181459_dc52801d-f3c0-41a3-905c-97679a8f11ff
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1583397767119_0013)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      1          1        0        0       0       0  
+Reducer 2 ...... container     SUCCEEDED      1          1        0        0       0       0  
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================&gt;&gt;] 100%  ELAPSED TIME: 6.24 s     
+----------------------------------------------------------------------------------------------
+OK
+85724
+Time taken: 21.222 seconds, Fetched: 1 row(s)
+hive&gt; 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h2 id="faq"><a href="#faq" class="header-anchor">#</a> FAQ</h2> <ol><li>在测试的时候，这个问题花了我大半天的时间，后面发先竟然是hive的锅。</li></ol> <div class="language- line-numbers-mode"><pre class="language-text"><code>Status: Failed
+Vertex failed, vertexName=Map 1, vertexId=vertex_1583397767119_0010_1_00, diagnostics=[Vertex vertex_1583397767119_0010_1_00 [Map 1] killed/failed due to:ROOT_INPUT_INIT_FAILURE, Vertex Input: s_crm_leads_origin initializer failed, vertex=vertex_1583397767119_0010_1_00 [Map 1], java.lang.ArithmeticException: / by zero
+        at org.apache.hadoop.hive.ql.exec.tez.HiveSplitGenerator.initialize(HiveSplitGenerator.java:179)
+        at org.apache.tez.dag.app.dag.RootInputInitializerManager$InputInitializerCallable$1.run(RootInputInitializerManager.java:278)
+        at org.apache.tez.dag.app.dag.RootInputInitializerManager$InputInitializerCallable$1.run(RootInputInitializerManager.java:269)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at javax.security.auth.Subject.doAs(Subject.java:422)
+        at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1875)
+        at org.apache.tez.dag.app.dag.RootInputInitializerManager$InputInitializerCallable.call(RootInputInitializerManager.java:269)
+        at org.apache.tez.dag.app.dag.RootInputInitializerManager$InputInitializerCallable.call(RootInputInitializerManager.java:253)
+        at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+        at java.lang.Thread.run(Thread.java:748)
+]
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>解决方案：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code># 设置hive.tez.container.size，默认值是-1，大坑一个
+set hive.tez.container.size=4096;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div></div></div> <!----> <div class="page-edit"><div class="edit-link"><a href="https://github.com/wuyue92tree/edit/master/docs/_posts/37.cdh632集成tez092计算引擎.md" target="_blank" rel="noopener noreferrer">帮我改善此页面</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="tags"><a href="/tags/?tag=tez" title="标签">#tez</a></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2021/02/04, 06:30:19</span></div></div> <div class="page-nav-wapper"><!----> <!----></div></div> <div class="article-list"><div class="article-title"><a href="/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/pages/a3a305/"><div>docker-compose部署openldap</div></a> <span>12-30</span></dt></dl><dl><dd>02</dd> <dt><a href="/pages/9b2797/"><div>drf中如何设置返回Serializers自定义字段</div></a> <span>10-10</span></dt></dl><dl><dd>03</dd> <dt><a href="/pages/4c7c71/"><div>在admin中list_display如何展示外键字段</div></a> <span>10-10</span></dt></dl> <dl><dd></dd> <dt><a href="/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><!----> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2017-2021
+    <span>Yue.Wu | <a href="https://github.com/xugaoyi/vuepress-theme-vdoing/blob/master/LICENSE" target="_blank">MIT License</a></span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">跟随系统</li><li class="iconfont icon-rijianmoshi">浅色模式</li><li class="iconfont icon-yejianmoshi">深色模式</li><li class="iconfont icon-yuedu">阅读模式</li></ul></div></div> <!----> <!----> <!----></div><div class="global-ui"><div></div></div></div>
+    <script src="/assets/js/app.a870adf0.js" defer></script><script src="/assets/js/2.8cb5b17e.js" defer></script><script src="/assets/js/61.7847aec8.js" defer></script>
+  </body>
+</html>
